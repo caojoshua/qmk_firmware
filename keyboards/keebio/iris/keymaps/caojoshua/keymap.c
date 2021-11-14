@@ -1,16 +1,15 @@
 #include QMK_KEYBOARD_H
 
-
 #define _DEFAULT 0
 #define _SYMBOL 1
 #define _NUMBER 2
-#define _GAME 3
+#define _MOUSE 3
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   SYMBOL,
   NUMBER,
-  GAME,
+  MOUSE,
 };
 
 #define KC_ALT_A  LALT_T(KC_A)
@@ -44,13 +43,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_DEFAULT] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, TG(_GAME),
+     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, TG(_MOUSE),
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_ALT_A, KC_SFT_S, KC_CTL_D, KC_GUI_F, KC_G,                              KC_H, KC_GUI_J, KC_CTL_K, KC_SFT_L, KC_ALT_SCLN, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  KC_ESC,           _______,   KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, _______,
+     _______,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  LT(_MOUSE, KC_ESC),           _______,   KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     KC_SPC, NUMBER,   _______,                   KC_BSPC,  SYMBOL,  KC_ENT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -83,6 +82,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
+  [_MOUSE] = LAYOUT(
+  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______,  _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, _______, _______,   _______, _______, _______,                                    _______, _______, _______, _______, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, KC_ALT_1, KC_WH_L,   KC_WH_U, KC_WH_D, KC_WH_R,                         KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_ALT_0, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, _______, _______,   _______, _______, _______, _______,                    _______, _______, _______, _______, _______, _______,
+  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                    _______, _______, _______, _______,                  _______, KC_BTN1, KC_BTN2
+                                // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+  ),
+
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -96,30 +109,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case SYMBOL:
       if (record->event.pressed) {
         layer_on(_SYMBOL);
-        update_tri_layer(_SYMBOL, _NUMBER, _GAME);
+        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
       } else {
         layer_off(_SYMBOL);
-        update_tri_layer(_SYMBOL, _NUMBER, _GAME);
+        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
       }
       return false;
       break;
     case NUMBER:
       if (record->event.pressed) {
         layer_on(_NUMBER);
-        update_tri_layer(_SYMBOL, _NUMBER, _GAME);
+        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
       } else {
         layer_off(_NUMBER);
-        update_tri_layer(_SYMBOL, _NUMBER, _GAME);
+        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
       }
       return false;
       break;
-    case GAME:
+    case MOUSE:
       if (record->event.pressed) {
-        layer_on(_GAME);
-        update_tri_layer(_SYMBOL, _NUMBER, _GAME);
+        layer_on(_MOUSE);
+        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
       } else {
-        layer_off(_GAME);
-        update_tri_layer(_SYMBOL, _NUMBER, _GAME);
+        layer_off(_MOUSE);
+        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
       }
       return false;
       break;
