@@ -21,24 +21,6 @@ enum custom_keycodes {
 #define KC_SFT_L  RSFT_T(KC_L)
 #define KC_ALT_SCLN  RALT_T(KC_SCLN)
 
-#define KC_ALT_GRV  LALT_T(KC_GRV)
-#define KC_SFT_EQL  LSFT_T(KC_EQL)
-#define KC_CTL_MINS  LCTL_T(KC_MINS)
-#define KC_GUI_LBRC  LGUI_T(KC_LBRC)
-#define KC_GUI_RBRC  RGUI_T(KC_RBRC)
-#define KC_CTL_TAB  RCTL_T(KC_TAB)
-#define KC_SFT_BSLS  RSFT_T(KC_BSLS)
-#define KC_ALT_QUOT   RALT_T(KC_QUOT)
-
-#define KC_ALT_1  LALT_T(KC_1)
-#define KC_SFT_2  LSFT_T(KC_2)
-#define KC_CTL_3  LCTL_T(KC_3)
-#define KC_GUI_4  LGUI_T(KC_4)
-#define KC_GUI_7  RGUI_T(KC_7)
-#define KC_CTL_8  RCTL_T(KC_8)
-#define KC_SFT_9  RSFT_T(KC_9)
-#define KC_ALT_0  RALT_T(KC_0)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_DEFAULT] = LAYOUT(
@@ -51,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  LT(_MOUSE, KC_ESC),           _______,   KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_SPC, NUMBER,   _______,                   KC_BSPC,  SYMBOL,  KC_ENT
+                                    KC_SPC, MO(_NUMBER),   _______,                   KC_BSPC,  MO(_SYMBOL),  KC_ENT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -61,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR, KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_ALT_GRV, KC_SFT_EQL, KC_CTL_MINS, KC_GUI_LBRC, KC_LCBR,                            KC_RCBR,  KC_GUI_RBRC, KC_CTL_TAB, KC_SFT_BSLS, KC_ALT_QUOT, _______, //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, KC_GRV, KC_EQL, KC_MINS, KC_LBRC, KC_LCBR,                            KC_RCBR,  KC_RBRC, KC_TAB, KC_BSLS, KC_QUOT, _______, //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_TILD, KC_PLUS, KC_UNDS, KC_PIPE, KC_CAPS, _______,          _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_DQT, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
@@ -74,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_F1, KC_F2,   KC_F3, KC_F4, KC_F5,                                    KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_ALT_1, KC_SFT_2,   KC_CTL_3, KC_GUI_4, KC_5,                            KC_6, KC_GUI_7, KC_CTL_8, KC_SFT_9, KC_ALT_0, _______,
+     _______, KC_1, KC_2,   KC_3, KC_4, KC_5,                            KC_6, KC_7, KC_8, KC_9, KC_0, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_F11, KC_F12,   KC_PSCR, _______, _______, _______,                    _______, KC__MUTE, KC__VOLDOWN, KC__VOLUP, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -88,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______,   _______, _______, _______,                                    _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_ALT_1, KC_WH_L,   KC_WH_U, KC_WH_D, KC_WH_R,                         KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_ALT_0, _______,
+     _______, _______, KC_WH_L,   KC_WH_U, KC_WH_D, KC_WH_R,                         KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______,   _______, _______, _______, _______,                    _______, _______, _______, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -99,43 +81,5 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case QWERTY:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_DEFAULT);
-      }
-      return false;
-      break;
-    case SYMBOL:
-      if (record->event.pressed) {
-        layer_on(_SYMBOL);
-        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
-      } else {
-        layer_off(_SYMBOL);
-        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
-      }
-      return false;
-      break;
-    case NUMBER:
-      if (record->event.pressed) {
-        layer_on(_NUMBER);
-        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
-      } else {
-        layer_off(_NUMBER);
-        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
-      }
-      return false;
-      break;
-    case MOUSE:
-      if (record->event.pressed) {
-        layer_on(_MOUSE);
-        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
-      } else {
-        layer_off(_MOUSE);
-        update_tri_layer(_SYMBOL, _NUMBER, _MOUSE);
-      }
-      return false;
-      break;
-  }
   return true;
 }
