@@ -1,0 +1,76 @@
+#include QMK_KEYBOARD_H
+
+#define _DEFAULT 0
+#define _SYMBOL 1
+#define _NUMBER 2
+#define _MOUSE 3
+
+enum custom_keycodes {
+  DEFAULT = SAFE_RANGE,
+  SYMBOL,
+  NUMBER,
+  MOUSE,
+};
+
+#define MOD_A  LALT_T(KC_A)
+#define MOD_S  LCTL_T(KC_S)
+#define MOD_D  LT(_SYMBOL, KC_D)
+#define MOD_F  LGUI_T(KC_F)
+
+#define MOD_J  RGUI_T(KC_J)
+#define MOD_K  LT(_SYMBOL, KC_K)
+#define MOD_L  RCTL_T(KC_L)
+#define MOD_SCLN  RALT_T(KC_SCLN)
+
+#define MOD_SPC SFT_T(KC_SPC)
+#define MOD_TAB LT(_MOUSE, KC_TAB)
+#define MOD_ENT  LT(_NUMBER, KC_ENTER)
+
+const uint16_t PROGMEM COMBO_ESC[] = { MOD_SPC, MOD_ENT, COMBO_END };
+combo_t key_combos[COMBO_COUNT] = {
+  COMBO(COMBO_ESC, KC_ESC),
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  [_DEFAULT] = LAYOUT(
+    KC_Q, KC_W, KC_E, KC_R, KC_T,
+    KC_Y, KC_U, KC_I, KC_O, KC_P,
+    MOD_A, MOD_S, MOD_D, MOD_F, KC_G,
+    KC_H, MOD_J, MOD_K, MOD_L, MOD_SCLN,
+    KC_Z, KC_X, KC_C, KC_V, KC_B,
+    KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
+    MOD_SPC, MOD_TAB,
+    KC_BSPC, MOD_ENT
+  ),
+  [_SYMBOL] = LAYOUT(
+    KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC,
+    KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
+    KC_GRV, KC_TILD, KC_LBRC, KC_RBRC, KC_BSLS,
+    KC_PIPE, KC_LCBR, KC_RCBR, KC_DQT, KC_QUOT,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_CAPS,
+    KC_MINS, KC_EQL,
+    KC_PLUS, KC_UNDS
+  ),
+  [_NUMBER] = LAYOUT(
+    KC_F1, KC_F2, KC_F3, KC_F4, KC_F5,
+    KC_F6, KC_F7, KC_F8, KC_F9, KC_F10,
+    KC_1, KC_2, KC_3, KC_4, KC_5,
+    KC_6, KC_7, KC_8, KC_9, KC_0,
+    KC_F11, KC_F12, KC_PSCR, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC__MUTE, KC__VOLDOWN, KC__VOLUP, KC_TRNS,
+    KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS
+  ),
+  [_MOUSE] = LAYOUT(
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R,
+    KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS,
+    KC_BTN1, KC_BTN2
+  ),
+};
+
