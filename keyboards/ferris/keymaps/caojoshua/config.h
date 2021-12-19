@@ -1,7 +1,7 @@
 #pragma once
 
 #define COMBO_COUNT 1
-#define COMBO_TERM 25
+#define COMBO_TERM 50
 
 #define TAPPING_TERM 150
 #define IGNORE_MOD_TAP_INTERRUPT

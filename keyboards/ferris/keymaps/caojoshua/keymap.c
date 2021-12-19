@@ -23,10 +23,10 @@ enum custom_keycodes {
 #define MOD_SCLN  RALT_T(KC_SCLN)
 
 #define MOD_SPC SFT_T(KC_SPC)
-#define MOD_TAB LT(_MOUSE, KC_TAB)
+#define MOD_BSPC LT(_MOUSE, KC_BSPC)
 #define MOD_ENT  LT(_NUMBER, KC_ENTER)
 
-const uint16_t PROGMEM COMBO_ESC[] = { MOD_SPC, MOD_ENT, COMBO_END };
+const uint16_t PROGMEM COMBO_ESC[] = { MOD_SPC, KC_TAB, COMBO_END };
 combo_t key_combos[COMBO_COUNT] = {
   COMBO(COMBO_ESC, KC_ESC),
 };
@@ -39,8 +39,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_H, MOD_J, MOD_K, MOD_L, MOD_SCLN,
     KC_Z, KC_X, KC_C, KC_V, KC_B,
     KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
-    MOD_SPC, MOD_TAB,
-    KC_BSPC, MOD_ENT
+    MOD_SPC, MOD_BSPC,
+    KC_TAB, MOD_ENT
   ),
   [_SYMBOL] = LAYOUT(
     KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC,
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS,
-    KC_BTN1, KC_BTN2
+    KC_BTN2, KC_BTN1
   ),
 };
 
