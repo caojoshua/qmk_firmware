@@ -6,8 +6,6 @@ MOUSEKEY_ENABLE = yes
 MOUSEKEY_DELAY = 50
 MOUSEKEY_INTERVAL = 16
 
-COMBO_ENABLE = yes
-
 MOUSEKEY_ENABLE = yes       # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
 CONSOLE_ENABLE = no         # Console for debug
